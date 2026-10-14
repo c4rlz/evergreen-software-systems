@@ -27,9 +27,3 @@ npm run preview   # serve the built site
 ## Deploy
 
 Static output in `dist/`. Works on Netlify or Cloudflare Pages with build command `npm run build` and output directory `dist`; set `NODE_VERSION=26` in the host's environment if it doesn't read `.nvmrc`.
-
-## Roadmap
-
-- **Phase 1, live and useful:** copy, layout, contact, deploy on the host's default subdomain.
-- **Phase 2, the funk:** generative p5.js forest in the hero (static treeline stays as the fallback and for reduced motion), textures, dark mode, an easter egg.
-- **Phase 3, once the name is final:** domain, custom email, set `site` in `astro.config.mjs`.
