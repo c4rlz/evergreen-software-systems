@@ -1,8 +1,7 @@
 // All site copy and links live here, so editing words never means touching layout.
 
 export const site = {
-  // Undecided: "Evergreen Software Consulting" or "Evergreen Software Solutions".
-  name: 'Evergreen Software Consulting',
+  name: 'Evergreen Software Systems',
   shortName: 'Evergreen',
   description:
     'Carly Ewasiuk, senior full-stack engineer. Helping SaaS teams turn rough ideas into clear plans and software that stays healthy long after launch. Remote from Vancouver Island, BC.',

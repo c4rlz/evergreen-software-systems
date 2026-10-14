@@ -1,6 +1,6 @@
-# Evergreen Software Consulting
+# Evergreen Software Systems
 
-The website for Evergreen Software Consulting: a one-page site that tells a potential client what I do, shows some work, and makes it easy to get in touch.
+The website for Evergreen Software Systems: a one-page site that tells a potential client what I do, shows some work, and makes it easy to get in touch.
 
 Built with [Astro](https://astro.build) and plain CSS. No client-side JavaScript yet.
 
