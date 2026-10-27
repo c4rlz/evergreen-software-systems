@@ -1,7 +1,8 @@
 // All site copy and links live here, so editing words never means touching layout.
 
 export const site = {
-  name: 'Evergreen Software Systems',
+  name: 'Evergreen Software',
+  studio: 'Sword Fern Studio',
   shortName: 'Evergreen',
   description:
     'Carly Ewasiuk, senior full-stack engineer. Helping SaaS teams turn rough ideas into clear plans and software that stays healthy long after launch. Remote from Vancouver Island, BC.',
