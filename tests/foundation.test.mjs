@@ -21,6 +21,6 @@ test('dark mode is defined', () => {
   assert.match(css(), /prefers-color-scheme:\s*dark/);
 });
 
-test('exactly one h1', { todo: 'lands in Task 3' }, () => {
+test('exactly one h1', () => {
   assert.equal(html().match(/<h1[\s>]/g)?.length, 1);
 });

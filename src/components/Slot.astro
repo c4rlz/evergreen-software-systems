@@ -1,0 +1,44 @@
+---
+// A drawing or photo slot. Shows the image once its file exists in public/,
+// and a dashed, labelled placeholder box until then.
+import type { Image } from '../content/site';
+
+interface Props {
+  image: Image;
+  class?: string;
+}
+
+const { image, class: className } = Astro.props;
+---
+
+{
+  image.src ? (
+    <img class:list={['slot-img', className]} src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+  ) : (
+    <div class:list={['slot', className]} role="img" aria-label={`Placeholder: ${image.placeholder}`}>
+      <span class="hand">{image.placeholder}</span>
+    </div>
+  )
+}
+
+<style>
+  .slot {
+    display: grid;
+    place-items: center;
+    min-height: 6rem;
+    padding: 0.75rem;
+    border: 1.5px dashed var(--fern-soft);
+    border-radius: 3px;
+    text-align: center;
+  }
+  .slot .hand {
+    font-size: 1.15rem;
+    color: var(--fern-soft);
+  }
+  .slot-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
