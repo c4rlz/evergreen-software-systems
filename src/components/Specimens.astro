@@ -9,7 +9,7 @@ import Slot from './Slot.astro';
   <div class="sheets">
     {
       specimens.map((s) => (
-        <article class="sheet" id={s.id} aria-labelledby={`${s.id}-name`}>
+        <article class="sheet" id={s.id} aria-labelledby={`${s.id}-name`} data-reveal>
           <span class="tape" aria-hidden="true" />
           <Slot image={s.drawing} class="drawing" />
           <div class="body">
@@ -70,6 +70,14 @@ import Slot from './Slot.astro';
   }
   .sheet :global(.drawing) {
     height: 9.5rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .sheet {
+      transition: box-shadow 0.25s ease;
+    }
+    .sheet:hover {
+      box-shadow: var(--shadow-lift);
+    }
   }
   .body {
     min-width: 0;

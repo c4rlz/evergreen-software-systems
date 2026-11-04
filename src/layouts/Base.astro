@@ -29,11 +29,27 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:alt" content="A pressed sword fern specimen on cream paper" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="page">
       <slot />
     </div>
+    <script is:inline>
+      // Tap the fern to show its note on touch screens.
+      document.querySelectorAll('.fern').forEach((b) =>
+        b.addEventListener('click', () => b.setAttribute('aria-expanded', String(b.getAttribute('aria-expanded') !== 'true'))),
+      );
+      // Fade notes and sheets in once as they scroll into view.
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        }, { rootMargin: '0px 0px -10% 0px' });
+        document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
   </body>
 </html>
