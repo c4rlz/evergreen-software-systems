@@ -27,10 +27,8 @@ test('Latin name and place show as visible text', () => {
   assert.match(page, /Cumberland, Vancouver Island/);
 });
 
-test('an empty image slot renders the placeholder, never a broken img', () => {
-  const page = html();
-  assert.match(page, /class="slot[^"]*"[^>]*role="img"/);
-  assert.doesNotMatch(page, /<img[^>]*src=""/);
+test('no image slot ever renders an img with an empty src', () => {
+  assert.doesNotMatch(html(), /<img[^>]*src=""/);
 });
 
 test('nav links all land on an element on the page', () => {

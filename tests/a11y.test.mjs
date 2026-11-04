@@ -40,9 +40,30 @@ test('every <img> on the page points at a file that exists', () => {
   }
 });
 
-test('a slot whose file is missing shows the placeholder', () => {
-  const missing = slots().filter((img) => !existsSync(`public${img.src}`)).length;
-  assert.equal([...html().matchAll(/class="slot[^"]*"[^>]*role="img"/g)].length, missing);
+test('every slot has a hand-drawn sketch to show until Carly adds her own', () => {
+  for (const img of slots()) {
+    assert.ok(img.sketch, `no sketch for ${img.src}`);
+    assert.ok(existsSync(`public${img.sketch.src}`), `${img.sketch.src} is missing`);
+    assert.ok(img.sketch.alt && !img.sketch.alt.includes('['), `sketch alt for ${img.src} should describe the sketch`);
+  }
+});
+
+test('a slot shows Carly\'s file first, then the sketch, and the placeholder only if neither exists', () => {
+  const page = html();
+  for (const img of slots()) {
+    const shown = existsSync(`public${img.src}`) ? img.src : img.sketch && existsSync(`public${img.sketch.src}`) ? img.sketch.src : null;
+    if (shown) assert.match(page, new RegExp(`<img[^>]*src="${shown}"`));
+  }
+  const neither = slots().filter((img) => !existsSync(`public${img.src}`) && !(img.sketch && existsSync(`public${img.sketch.src}`))).length;
+  assert.equal([...page.matchAll(/class="slot[^"]*"[^>]*role="img"/g)].length, neither);
+});
+
+test('sketches look hand-drawn and follow dark mode', () => {
+  for (const img of slots()) {
+    const svg = readFileSync(`public${img.sketch.src}`, 'utf8');
+    assert.match(svg, /feDisplacementMap/, `${img.sketch.src} has no pencil wobble`);
+    assert.match(svg, /prefers-color-scheme:\s*dark/, `${img.sketch.src} ignores dark mode`);
+  }
 });
 
 test('the fern note reveals on keyboard focus', () => {

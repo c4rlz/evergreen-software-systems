@@ -14,12 +14,23 @@ interface Props {
 }
 
 const { image, class: className } = Astro.props;
-const found = available.has(image.src);
+// Carly's own file wins; then the hand-drawn sketch; then the placeholder box.
+const shown = available.has(image.src)
+  ? { src: image.src, alt: image.alt, sketch: false }
+  : image.sketch && available.has(image.sketch.src)
+    ? { ...image.sketch, sketch: true }
+    : null;
 ---
 
 {
-  found ? (
-    <img class:list={['slot-img', className]} src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+  shown ? (
+    <img
+      class:list={['slot-img', { 'slot-sketch': shown.sketch }, className]}
+      src={shown.src}
+      alt={shown.alt}
+      loading="lazy"
+      decoding="async"
+    />
   ) : (
     <div class:list={['slot', className]} role="img" aria-label={`Placeholder: ${image.placeholder}`}>
       <span class="hand">{image.placeholder}</span>
@@ -46,5 +57,9 @@ const found = available.has(image.src);
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  /* Sketches are line drawings: show all of them, never crop. */
+  .slot-sketch {
+    object-fit: contain;
   }
 </style>
