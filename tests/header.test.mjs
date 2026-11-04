@@ -43,3 +43,7 @@ test('share image and favicon exist', () => {
   assert.ok(existsSync('dist/og.png'));
   assert.ok(existsSync('dist/favicon.svg'));
 });
+
+test('the polaroid caption names the place', () => {
+  assert.match(html(), /<figcaption[^>]*>Cumberland, BC<\/figcaption>/);
+});

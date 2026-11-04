@@ -38,7 +38,7 @@ export const specimen = {
     alt: '[Carly writes: describe the photo]',
     placeholder: 'photo: the forest, your desk',
     sketch: { src: '/drawings/sketches/header.svg', alt: 'Pencil sketch of the Beaufort Range above a line of trees and sword ferns' },
-    caption: 'Cumberland, Oct.',
+    caption: 'Cumberland, BC',
   },
   fern: {
     latin: 'Polystichum munitum',
