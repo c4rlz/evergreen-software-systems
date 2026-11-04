@@ -1,7 +1,8 @@
 ---
-import '@fontsource-variable/fraunces';
-import '@fontsource-variable/fraunces/wght-italic.css';
-import '@fontsource-variable/inter';
+import '@fontsource/im-fell-english/400.css';
+import '@fontsource/im-fell-english/400-italic.css';
+import '@fontsource-variable/literata';
+import '@fontsource-variable/caveat';
 import '../styles/global.css';
 import { site } from '../content/site';
 
@@ -9,7 +10,9 @@ interface Props {
   title?: string;
 }
 
-const { title = site.name } = Astro.props;
+const { title = site.title } = Astro.props;
+// Absolute once `site` is set in astro.config.mjs (when the domain exists).
+const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
 ---
 
 <!doctype html>
@@ -19,14 +22,18 @@ const { title = site.name } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={site.description} />
-    <meta name="theme-color" content="#1f3a2e" />
+    <meta name="theme-color" content="#f3ecdc" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={site.description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="A pressed sword fern specimen on cream paper" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <slot />
+    <div class="page">
+      <slot />
+    </div>
   </body>
 </html>
