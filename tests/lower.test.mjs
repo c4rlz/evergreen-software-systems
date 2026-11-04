@@ -21,12 +21,13 @@ test('contact links to the personal site', () => {
   assert.match(section('hello'), /href="https:\/\/carlyewasiuk\.com"/);
 });
 
-test('with no email yet: placeholder shown, no mailto, LinkedIn first', () => {
+test('email is the main way in: shown as text and as a mailto link', () => {
   const hello = section('hello');
-  assert.doesNotMatch(hello, /mailto:/);
-  assert.match(text(hello), /\[email goes here\]/);
+  assert.match(hello, /<a[^>]*href="mailto:hi@carlyewasiuk\.com"[^>]*>hi@carlyewasiuk\.com<\/a>/);
+  assert.doesNotMatch(text(hello), /\[email goes here\]/);
   const first = hello.match(/<a[^>]*href="([^"]+)"/)[1];
-  assert.match(first, /linkedin\.com/);
+  assert.equal(first, 'mailto:hi@carlyewasiuk.com');
+  assert.match(hello, /linkedin\.com/);
 });
 
 test('footer shows last tended and the about line, no copyright', () => {

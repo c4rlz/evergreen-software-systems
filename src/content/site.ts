@@ -162,8 +162,8 @@ export const handmade = {
 
 export const contact = {
   invite: 'If something here sounds like your team, send me a few lines about it. No pitch deck needed, just what’s going on and what you’d like to be different.',
-  // Leave empty until the studio email exists. While blank, LinkedIn is the main link.
-  email: '',
+  // Shown as the main way in. Leave empty to fall back to LinkedIn.
+  email: 'hi@carlyewasiuk.com',
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/carly-ewasiuk/' },
     { label: 'GitHub', href: 'https://github.com/c4rlz' },
