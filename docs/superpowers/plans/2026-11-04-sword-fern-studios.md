@@ -8,7 +8,7 @@
 
 **Tech Stack:** Astro 7, TypeScript, plain CSS, Fontsource (`@fontsource/im-fell-english`, `@fontsource-variable/literata`, `@fontsource-variable/caveat`), `sharp` (already installed through Astro) for the OG image, `node:test` (no new test deps).
 
-**Spec:** `docs/superpowers/specs/2026-11-04-sword-fern-studio-design.md`. The approved mockup linked there is the visual reference; its CSS tokens may be copied.
+**Spec:** `docs/superpowers/specs/2026-11-04-sword-fern-studios-design.md`. The approved mockup linked there is the visual reference; its CSS tokens may be copied.
 
 ## Global Constraints
 
@@ -63,7 +63,7 @@ Deleted: `Hero.astro`, `Services.astro`, `Proof.astro`, `About.astro`, `Contact.
 **Interfaces:**
 - Produces: `tests/helpers.mjs` exports `html(): string` (reads `dist/index.html`) and `css(): string` (concatenates every `dist/**/*.css`). `site.ts` exports `site = { name: 'Sword Fern Studio', title: string, description: string, place: 'Cumberland, Vancouver Island' }`. CSS tokens: `--paper`, `--sheet`, `--ink`, `--ink-soft`, `--fern`, `--fern-soft`, `--accent`, `--rule`, `--grid`, `--shadow`, `--font-display`, `--font-body`, `--font-hand`. Helper classes: `.hand`, `.ph`, `.label`, `.tape`.
 
-- [ ] **Step 1: Add the test script.** `package.json`: `"name": "sword-fern-studio"`, `"test": "npm run build && node --test tests/"`.
+- [ ] **Step 1: Add the test script.** `package.json`: `"name": "sword-fern-studios"`, `"test": "npm run build && node --test tests/"`.
 - [ ] **Step 2: Write the failing test** `tests/foundation.test.mjs`:
   - `no Evergreen anywhere`: `assert.doesNotMatch(html() + css(), /evergreen/i)`
   - `title`: `<title>Sword Fern Studio — software, made by hand on Vancouver Island</title>` is present

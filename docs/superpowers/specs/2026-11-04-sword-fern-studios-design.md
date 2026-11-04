@@ -128,7 +128,7 @@ Match the approved mockup. Its CSS is a fine starting point for tokens.
 
 - Components: `Hero`, `Services`, `Proof`, `About`, `Treeline` and the Evergreen palette in `global.css`. Reuse `Section.astro`, `Base.astro` and `Footer.astro` where they fit.
 - The Fraunces and Inter font packages, replaced by IM Fell English, Literata and Caveat.
-- Package name `evergreen-software-systems` → `sword-fern-studio` (both `package.json` and `package-lock.json`).
+- Package name `evergreen-software-systems` → `sword-fern-studios` (both `package.json` and `package-lock.json`).
 - README rewritten for Sword Fern Studios, updating the "Where things live" table and Deploy section (Cloudflare Pages).
 - `site.shortName: 'Evergreen'` and every other Evergreen string. After the build, `git grep -i evergreen` should return nothing outside `docs/`.
 
