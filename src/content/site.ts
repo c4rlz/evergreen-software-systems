@@ -1,76 +1,206 @@
 // All site copy and links live here, so editing words never means touching layout.
+// Anything in [square brackets] is still a placeholder. The rest is a first draft for Carly to edit.
 
-export const site = {
-  name: 'Evergreen Software',
-  studio: 'Sword Fern Studio',
-  shortName: 'Evergreen',
+// A drawing or photo slot. `src` is where your own file lives under public/.
+// Until that file exists, the page shows the hand-drawn `sketch` instead (or a
+// dashed placeholder box if there's no sketch), so adding your scan at that
+// exact path is all it takes to swap it in. Update `alt` when you do.
+export type Image = { src: string; alt: string; placeholder: string; sketch?: { src: string; alt: string } };
+
+export const site: {
+  name: string;
+  title: string;
+  description: string;
+  place: string;
+  // e.g. '4 Nov 2026'. Leave unset to use the build date.
+  lastTended?: string;
+} = {
+  name: 'Sword Fern Studios',
+  title: 'Sword Fern Studios — software, made by hand on Vancouver Island',
   description:
-    'Carly Ewasiuk, senior full-stack engineer. Helping SaaS teams turn rough ideas into clear plans and software that stays healthy long after launch. Remote from Vancouver Island, BC.',
+    'Sword Fern Studios is a one-person software studio in Cumberland, Vancouver Island: product development, systems, and thoughtful AI consulting.',
+  place: 'Cumberland, Vancouver Island',
 };
 
-export const hero = {
-  // Words wrapped in *asterisks* get the italic moss accent.
-  status: 'Taking on contract work · Remote from Vancouver Island, BC',
-  headline: 'From rough idea to *evergreen* software.',
-  sub: 'I’m Carly, a senior full-stack engineer. I help SaaS teams turn rough ideas into clear plans, then build software that stays healthy long after launch.',
-  cta: 'Get in touch',
+export const nav = [
+  { label: 'Key', href: '#key' },
+  { label: 'Specimens', href: '#specimens' },
+  { label: 'Field notes', href: '#field-notes' },
+  { label: 'Made by hand', href: '#handmade' },
+  { label: 'Say hello', href: '#hello' },
+];
+
+export const specimen = {
+  tagline: 'Software, made by hand. Grows in Cumberland, Vancouver Island.',
+  line: 'A one-person software studio. I build and untangle software for small teams, and use AI where it actually helps.',
+  photo: {
+    src: '/photos/header.jpg',
+    alt: '[Carly writes: describe the photo]',
+    placeholder: 'photo: the forest, your desk',
+    sketch: { src: '/drawings/sketches/header.svg', alt: 'Pencil sketch of the Beaufort Range above a line of trees and sword ferns' },
+    caption: 'Cumberland, BC',
+  },
+  fern: {
+    latin: 'Polystichum munitum',
+    note: 'Sword ferns grow all through the forest here. They stay green all winter and come back every spring.',
+  },
 };
 
-export const services = [
+export const key = [
   {
-    title: 'Product engineering',
-    body: 'Features built end to end in React, Next.js, Node and Rails, shipped with tests and monitoring.',
+    couplet: '1a.',
+    text: 'You have an idea, or a service that needs to be better',
+    href: '#plate-1',
+    target: 'plate-1',
   },
   {
-    title: 'AI workflows',
-    body: 'AI features and agentic dev workflows, with review checkpoints so people stay in charge of what ships.',
+    couplet: '1b.',
+    text: 'Your process, or the plumbing between your tools, is the problem',
+    href: '#plate-2',
+    target: 'plate-2',
   },
   {
-    title: 'Backend and reliability',
-    body: 'APIs, data pipelines and AWS infrastructure, with the tracing and alerts that catch problems early.',
+    couplet: '1c.',
+    text: 'You want AI to do something useful, without being thoughtless about it',
+    href: '#plate-3',
+    target: 'plate-3',
   },
   {
-    title: 'Technical leadership',
-    body: 'A former engineering manager who can scope a messy project, coordinate a risky release, and steady a team.',
+    couplet: '1d.',
+    text: 'None of these, but you think we’d get along',
+    href: '#hello',
+    target: 'hello',
   },
 ];
 
-export const proof = [
+export const specimens: {
+  id: string;
+  plate: string;
+  name: string;
+  line: string;
+  habitat: string;
+  growth: string;
+  seenAt?: { label: string; href: string };
+  seeAlso?: { label: string; href: string };
+  // `struck` renders crossed out before `text`. Use it once on the page, at most.
+  confused: { struck?: string; text: string };
+  drawing: Image;
+}[] = [
   {
-    title: 'AI topic classification',
-    meta: 'Moz · 2024–2026',
-    body: 'Led the cross-team rollout of AI keyword categorization, and designed the API contracts for a shared AI tracking service used across several apps.',
+    id: 'plate-1',
+    plate: 'Plate I',
+    name: 'Product development',
+    line: 'New services, or better versions of the ones you have, built so your users enjoy using them.',
+    habitat: 'Small teams and mission-driven orgs with a clear idea and nobody free to build it.',
+    growth: 'We agree on the outcome, I write a plan you can poke holes in, then I build it end to end, with the tests and docs your team needs to own it after I leave.',
+    seenAt: { label: 'ticket2pr', href: '#note-ticket2pr' },
+    confused: { text: 'an agency that ships and disappears' },
+    drawing: {
+      src: '/drawings/plate-1.svg',
+      alt: '[Carly writes: describe the drawing]',
+      placeholder: 'your drawing',
+      sketch: { src: '/drawings/sketches/plate-1.svg', alt: 'Pencil sketch of a young fern frond unfurling, beside a measuring ruler' },
+    },
   },
   {
+    id: 'plate-2',
+    plate: 'Plate II',
+    name: 'Systems',
+    line: 'Untangling how work gets done, and the software plumbing between your tools, so process stops being the problem.',
+    habitat: 'Teams with too many tools, copy-and-paste between them, and integrations nobody finished.',
+    growth: 'I map how work actually moves, then simplify what I can and connect what’s left.',
+    seenAt: { label: 'A shared AI tracking service', href: '#note-moz' },
+    confused: { struck: 'more process', text: 'another tool to manage' },
+    drawing: {
+      src: '/drawings/plate-2.svg',
+      alt: '[Carly writes: describe the drawing]',
+      placeholder: 'your drawing',
+      sketch: { src: '/drawings/sketches/plate-2.svg', alt: 'Pencil sketch of roots running underground and joining three small boxes, like a fungal network linking tools' },
+    },
+  },
+  {
+    id: 'plate-3',
+    plate: 'Plate III',
+    name: 'AI consulting',
+    line: 'Working out where AI is actually useful for you, then putting it in thoughtfully.',
+    habitat: 'Teams who are curious about AI but wary of the hype, the cost, or getting it wrong.',
+    growth: 'Start with the problem, not the model. Try it small, check it with real people, and keep a person reviewing what ships.',
+    seeAlso: { label: 'Made by hand, with help', href: '#handmade' },
+    confused: { text: 'AI for the sake of AI' },
+    drawing: {
+      src: '/drawings/plate-3.svg',
+      alt: '[Carly writes: describe the drawing]',
+      placeholder: 'your drawing',
+      sketch: { src: '/drawings/sketches/plate-3.svg', alt: 'Pencil sketch of a hand lens held over a fern sprig, with a small spark beside it' },
+    },
+  },
+];
+
+export const fieldNotes: {
+  id: string;
+  date: string;
+  title: string;
+  body: string;
+  href?: string;
+  linkLabel?: string;
+  specimenId?: string;
+}[] = [
+  {
+    id: 'note-ticket2pr',
+    date: 'Observed 2026',
     title: 'ticket2pr',
-    meta: 'Open source · TypeScript, Claude Code',
+    body: 'A small command-line tool that turns a ticket into a plan you review, then a draft pull request. A two-minute plan review catches a wrong approach before it becomes a 400-line diff.',
     href: 'https://github.com/c4rlz/ticket2pr',
-    body: 'A CLI that turns a ticket into a plan you review, then a draft pull request. A two-minute plan review catches a wrong approach before it becomes a 400-line diff.',
+    linkLabel: 'github.com/c4rlz/ticket2pr',
+    specimenId: 'plate-1',
   },
   {
+    id: 'note-moz',
+    date: 'Observed 2024–2026',
+    title: 'AI topic classification at Moz',
+    body: 'Led the cross-team rollout of AI keyword categorization, and designed the API contracts for a shared AI tracking service used across several apps.',
+    specimenId: 'plate-3',
+  },
+  {
+    id: 'note-garden-within',
+    date: 'Observed on the side',
     title: 'Garden Within',
-    meta: 'Side project · Next.js, Prisma, Postgres',
+    body: 'A cycle-aware journaling app I designed and built on my own, with sign-in, rate limiting, and an app you can install on your phone.',
     href: 'https://github.com/c4rlz/garden-within',
-    body: 'A cycle-aware journaling app I designed and built solo, with auth, rate limiting and an installable PWA.',
+    linkLabel: 'github.com/c4rlz/garden-within',
+    specimenId: 'plate-1',
   },
 ];
 
-export const about = {
-  paragraphs: [
-    'Before software, I was a special education assistant, adapting my approach to each student. I still work that way: meet a team where it is, then figure out what will actually help. Since 2018 I’ve been a full-stack developer, an engineering manager for a team of six, and most recently a senior developer at Moz.',
-    'The thread through all of it is turning ambiguity into a plan. I ask the awkward questions early, write the answers down, and make sure the release everyone is nervous about lands smoothly.',
-    'I work async-first. Agree on the outcome with me and trust me with the how: I plan before I build, raise risks early, and build in tests, docs and monitoring as I go, so your team can own the work after I’ve moved on.',
+export const handmade = {
+  // One string per paragraph.
+  body: [
+    'AI has shortened the distance between an idea and the thing itself. Something that used to take weeks just to try can now be sketched, built and put in front of people far sooner. Truly, we’re only limited by our imagination.',
+    'So I let AI do a lot of the heavy lifting. The parts that matter most stay with me: listening to what you actually need, deciding what’s worth making, and caring whether it’s good before it ships.',
   ],
+  image: {
+    src: '/photos/handmade.jpg',
+    alt: '[Carly writes: describe the image]',
+    placeholder: 'a sketch, or a photo of your notebook',
+    sketch: { src: '/drawings/sketches/handmade.svg', alt: 'Pencil sketch of an open notebook with a fern doodle, a pencil, and a small spark' },
+  },
 };
 
 export const contact = {
-  intro: 'Have a project or a gap on your team? Send me a few lines about it.',
-  // Leave empty until the domain email exists. While blank, LinkedIn is the main button.
-  email: '',
+  invite: 'If something here sounds like your team, send me a few lines about it. No pitch deck needed, just what’s going on and what you’d like to be different.',
+  // Shown as the main way in. Leave empty to fall back to LinkedIn.
+  email: 'hi@carlyewasiuk.com',
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/carly-ewasiuk/' },
     { label: 'GitHub', href: 'https://github.com/c4rlz' },
   ],
-  // Optional intro-call booking link (e.g. Cal.com). Hidden while blank.
-  bookingUrl: '',
+  personal: { label: 'More about me, and my resume', href: 'https://carlyewasiuk.com' },
+};
+
+// "Other things growing here": add entries when there's something to show.
+export const futureSections: { title: string; body: string }[] = [];
+
+export const footer = {
+  about: 'Human creativity, amplified by AI.',
+  madeBy: 'Made with love by Carly',
 };

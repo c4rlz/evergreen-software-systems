@@ -1,0 +1,71 @@
+---
+// The header: the studio itself, pinned like a specimen.
+import { site, specimen } from '../content/site';
+import Fern from './Fern.astro';
+import Slot from './Slot.astro';
+---
+
+<header class="specimen">
+  <Fern />
+  <div class="title">
+    <p class="label">Specimen</p>
+    <h1>{site.name}</h1>
+    <p class="tagline">{specimen.tagline}</p>
+    <p class="ph line">{specimen.line}</p>
+  </div>
+  <figure class="polaroid">
+    <span class="tape" aria-hidden="true"></span>
+    <Slot image={specimen.photo} class="photo" />
+    <figcaption class="hand">{specimen.photo.caption}</figcaption>
+  </figure>
+</header>
+
+<style>
+  .specimen {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 11rem);
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: center;
+    padding-bottom: var(--section-space);
+  }
+  h1 {
+    font-size: clamp(2.1rem, 6vw, 3.4rem);
+  }
+  .tagline {
+    margin-top: 0.3rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+  }
+  .line {
+    margin-top: 0.75rem;
+    max-width: 42ch;
+  }
+  .polaroid {
+    position: relative;
+    margin: 0;
+    padding: 0.5rem 0.5rem 0.25rem;
+    background: var(--paper);
+    box-shadow: var(--shadow);
+    transform: rotate(2.5deg);
+  }
+  .polaroid :global(.photo) {
+    height: 8rem;
+  }
+  figcaption {
+    padding-block: 0.25rem;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  @media (max-width: 640px) {
+    .specimen {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+    .polaroid {
+      grid-column: 1 / -1;
+      justify-self: end;
+      width: min(14rem, 80%);
+    }
+  }
+</style>

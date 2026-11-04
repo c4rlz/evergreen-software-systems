@@ -1,0 +1,96 @@
+---
+// The specimen fern. Hover, keyboard focus or a tap reveals its Latin name
+// and Carly's note. The note is a small extra, never essential information.
+import fernSvg from '../../public/drawings/fern.svg?raw';
+import { specimen } from '../content/site';
+
+const { latin, note } = specimen.fern;
+---
+
+<div class="fern-wrap">
+  <button
+    class="fern"
+    type="button"
+    aria-label={`Sword fern, ${latin}`}
+    aria-describedby="fern-note"
+  >
+    <span class="fern-drawing" aria-hidden="true" set:html={fernSvg} />
+  </button>
+  <p class="latin">{latin}</p>
+  <p id="fern-note" class="fern-note hand">{note}</p>
+</div>
+
+<style>
+  .fern-wrap {
+    position: relative;
+    display: grid;
+    justify-items: center;
+  }
+  .fern {
+    padding: 0.25rem;
+    border: 0;
+    background: none;
+    color: var(--fern);
+    cursor: help;
+  }
+  .fern-drawing :global(svg) {
+    display: block;
+    width: clamp(4.5rem, 12vw, 6.5rem);
+    height: auto;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .fern-drawing :global(.leaf) {
+      transform-box: fill-box;
+      transform-origin: 0% 50%;
+      animation: unfurl 0.9s ease-out both;
+      animation-delay: calc(var(--i) * 45ms);
+    }
+  }
+  @keyframes unfurl {
+    from {
+      opacity: 0;
+      transform: scale(0.3) rotate(-12deg);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .latin {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .fern-note {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 3;
+    width: max-content;
+    max-width: 14rem;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--paper);
+    box-shadow: var(--shadow);
+    font-size: 1.15rem;
+    transform: translateX(-30%) rotate(-2deg);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s;
+  }
+  /* Hovering the note itself keeps it open. */
+  .fern-wrap:hover .fern-note,
+  .fern:focus-visible + .latin + .fern-note,
+  .fern[aria-expanded='true'] + .latin + .fern-note {
+    opacity: 1;
+    visibility: visible;
+  }
+  /* Escape dismisses it until the pointer or focus moves away. */
+  .fern-wrap.is-dismissed .fern-note {
+    opacity: 0;
+    visibility: hidden;
+  }
+</style>

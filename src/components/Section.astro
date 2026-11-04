@@ -1,36 +1,42 @@
 ---
-// Shared section frame: heading in a narrow left column on wide screens,
-// content on the right. Stacks on phones.
+// Shared section frame: a ruled line, then the roman numeral and heading.
+// Numerals only mark the order of sections on the page.
 interface Props {
   id: string;
+  numeral: string;
   title: string;
   class?: string;
 }
 
-const { id, title, class: className } = Astro.props;
+const { id, numeral, title, class: className } = Astro.props;
 ---
 
 <section class:list={['section', className]} id={id} aria-labelledby={`${id}-title`}>
-  <div class="container frame">
+  <div class="heading">
+    <span class="numeral" aria-hidden="true">{numeral}</span>
     <h2 id={`${id}-title`}>{title}</h2>
-    <div class="body"><slot /></div>
   </div>
+  <slot />
 </section>
 
 <style>
-  .frame {
-    display: grid;
-    gap: 1.25rem 3rem;
+  .section {
+    padding-block: 1.5rem var(--section-space);
+    border-top: 1px solid var(--rule);
+  }
+  .heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .numeral {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--accent);
   }
   h2 {
-    margin: 0;
-  }
-  .body {
-    min-width: 0;
-  }
-  @media (min-width: 52rem) {
-    .frame {
-      grid-template-columns: 12rem 1fr;
-    }
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
   }
 </style>

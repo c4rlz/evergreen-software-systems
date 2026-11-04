@@ -1,0 +1,84 @@
+---
+// The invitation to work together.
+import { contact, futureSections } from '../content/site';
+import Section from './Section.astro';
+
+// Email is the main way in once it exists; until then, the first link is.
+const [firstLink, ...otherLinks] = contact.links;
+const secondary = contact.email ? contact.links : otherLinks;
+---
+
+<Section id="hello" numeral="v." title="Companion species">
+  <div class="invite">
+    <p class="ph">{contact.invite}</p>
+    {
+      contact.email ? (
+        <p class="email">
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        </p>
+      ) : (
+        <>
+          <p class="primary">
+            <a href={firstLink.href} rel="me">Message me on {firstLink.label}</a>
+          </p>
+          <p class="email ph">[email goes here]</p>
+        </>
+      )
+    }
+    <ul class="links">
+      {secondary.map((l) => <li><a href={l.href} rel="me">{l.label}</a></li>)}
+    </ul>
+    <p class="personal">
+      Sword Fern Studios is Carly Ewasiuk’s practice. <a href={contact.personal.href} rel="me">{contact.personal.label} →</a>
+    </p>
+  </div>
+  {
+    futureSections.length > 0 && (
+      <aside class="future" aria-labelledby="future-title">
+        <h3 id="future-title">Other things growing here</h3>
+        {futureSections.map((f) => (
+          <div>
+            <h4>{f.title}</h4>
+            <p>{f.body}</p>
+          </div>
+        ))}
+      </aside>
+    )
+  }
+</Section>
+
+<style>
+  .invite {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 54ch;
+  }
+  .email,
+  .primary {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    overflow-wrap: anywhere;
+  }
+  .email.ph {
+    font-size: 1.1rem;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.95rem;
+  }
+  .personal {
+    color: var(--ink-soft);
+  }
+  .future {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--rule);
+  }
+</style>
