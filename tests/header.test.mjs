@@ -33,11 +33,11 @@ test('an empty image slot renders the placeholder, never a broken img', () => {
   assert.doesNotMatch(page, /<img[^>]*src=""/);
 });
 
-test('nav links all land on an element on the page', { todo: 'all targets exist after Task 5' }, () => {
+test('nav links all land on an element on the page', () => {
   const page = html();
   const nav = page.match(/<nav[\s\S]*?<\/nav>/)[0];
   const hrefs = [...nav.matchAll(/href="#([^"]+)"/g)].map((m) => m[1]);
-  assert.equal(hrefs.length, 5);
+  assert.equal(hrefs.length, 6); // the brand link to #main, plus five section links
   for (const id of hrefs) assert.match(page, new RegExp(`id="${id}"`), `#${id} missing`);
 });
 

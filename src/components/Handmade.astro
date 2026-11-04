@@ -1,0 +1,37 @@
+---
+// The heart of the site. Carly writes this section herself.
+import { handmade } from '../content/site';
+import Section from './Section.astro';
+import Slot from './Slot.astro';
+---
+
+<Section id="handmade" numeral="iv." title="Made by hand, with help">
+  <div class="handmade">
+    <p class="ph body">{handmade.body}</p>
+    <Slot image={handmade.image} class="image" />
+  </div>
+</Section>
+
+<style>
+  .handmade {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 13rem);
+    gap: 1.5rem 2.5rem;
+    align-items: start;
+  }
+  .body {
+    font-size: 1.15rem;
+    line-height: 1.75;
+  }
+  .handmade :global(.image) {
+    height: 14rem;
+  }
+  @media (max-width: 640px) {
+    .handmade {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .handmade :global(.image) {
+      height: 8rem;
+    }
+  }
+</style>

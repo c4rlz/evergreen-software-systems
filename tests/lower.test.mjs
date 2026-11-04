@@ -1,0 +1,41 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { html, section } from './helpers.mjs';
+
+const text = (s) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+const footer = () => html().match(/<footer[\s\S]*?<\/footer>/)?.[0] ?? '';
+
+test('field notes link to ticket2pr', () => {
+  assert.match(section('field-notes'), /href="https:\/\/github\.com\/c4rlz\/ticket2pr"/);
+});
+
+test('the Plate I "Seen at" link lands on the ticket2pr note', () => {
+  assert.match(html(), /id="note-ticket2pr"/);
+});
+
+test('Made by hand is left for Carly to write', () => {
+  assert.match(text(section('handmade')), /\[Carly writes this whole section/);
+});
+
+test('contact links to the personal site', () => {
+  assert.match(section('hello'), /href="https:\/\/carlyewasiuk\.com"/);
+});
+
+test('with no email yet: placeholder shown, no mailto, LinkedIn first', () => {
+  const hello = section('hello');
+  assert.doesNotMatch(hello, /mailto:/);
+  assert.match(text(hello), /\[email goes here\]/);
+  const first = hello.match(/<a[^>]*href="([^"]+)"/)[1];
+  assert.match(first, /linkedin\.com/);
+});
+
+test('footer shows last tended and the about line, no copyright', () => {
+  const f = text(footer());
+  assert.match(f, /Last tended \d{1,2} \w{3,4}\.? \d{4}/);
+  assert.match(f, /Human creativity, amplified by AI\./);
+  assert.doesNotMatch(html(), /©/);
+});
+
+test('no future sections render yet', () => {
+  assert.doesNotMatch(html(), /Other things growing here/);
+});

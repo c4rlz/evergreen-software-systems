@@ -17,7 +17,7 @@ test('every key link lands on a sheet', () => {
   for (const id of hrefs) assert.match(page, new RegExp(`<article[^>]*id="${id}"`));
 });
 
-test('the "none of these" key line lands on the contact section', { todo: 'lands in Task 5' }, () => {
+test('the "none of these" key line lands on the contact section', () => {
   assert.match(html(), /<section[^>]*id="hello"/);
 });
 

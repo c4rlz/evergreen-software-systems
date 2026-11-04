@@ -1,0 +1,77 @@
+---
+// Short project stories, written like observations on ruled paper.
+import { fieldNotes, specimens } from '../content/site';
+import Section from './Section.astro';
+
+const plateFor = (id?: string) => specimens.find((s) => s.id === id);
+---
+
+<Section id="field-notes" numeral="iii." title="Field notes">
+  <div class="notes">
+    {
+      fieldNotes.map((n) => {
+        const plate = plateFor(n.specimenId);
+        return (
+          <article class="note" id={n.id} data-reveal>
+            <p class="date">{n.date}</p>
+            <h3>{n.title}</h3>
+            <p class="ph">{n.body}</p>
+            {n.href && (
+              <p class="hand link">
+                → <a href={n.href}>{n.linkLabel ?? n.href}</a>
+              </p>
+            )}
+            {plate && (
+              <p class="specimen">
+                Specimen: <a href={`#${plate.id}`}>{plate.name}</a>
+              </p>
+            )}
+          </article>
+        );
+      })
+    }
+  </div>
+</Section>
+
+<style>
+  .notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1.25rem;
+  }
+  .note {
+    min-width: 0;
+    padding: 0.9rem 1rem 1rem;
+    background: repeating-linear-gradient(var(--sheet) 0 1.6rem, var(--rule) 1.6rem calc(1.6rem + 1px));
+    border-left: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    scroll-margin-top: 1.5rem;
+  }
+  .note:nth-child(2) {
+    transform: rotate(0.6deg);
+  }
+  .date {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  h3 {
+    margin: 0.1rem 0 0.4rem;
+    font-size: 1.2rem;
+  }
+  .link {
+    margin-top: 0.4rem;
+    font-size: 1.1rem;
+    overflow-wrap: anywhere;
+  }
+  .specimen {
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 600px) {
+    .note:nth-child(2) {
+      transform: none;
+    }
+  }
+</style>

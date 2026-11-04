@@ -1,5 +1,26 @@
 ---
-// Filled in with "last tended" and the about-this-site line in Task 5.
+import { footer, site } from '../content/site';
+
+// "Last tended" in place of a copyright line. Defaults to the build date.
+const tended =
+  site.lastTended ??
+  new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 
-<footer class="footer"></footer>
+<footer class="footer">
+  <p>Last tended {tended}</p>
+  <p>{footer.about}</p>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+</style>
