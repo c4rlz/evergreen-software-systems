@@ -39,3 +39,9 @@ test('footer shows last tended and the about line, no copyright', () => {
 test('no future sections render yet', () => {
   assert.doesNotMatch(html(), /Other things growing here/);
 });
+
+test('footer says "Made with love by Carly" with a heart', () => {
+  const f = footer();
+  assert.match(text(f), /Made with love by Carly/);
+  assert.match(f, /class="heart"[^>]*aria-hidden="true"|aria-hidden="true"[^>]*class="heart"/);
+});

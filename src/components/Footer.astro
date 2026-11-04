@@ -3,12 +3,19 @@ import { footer, site } from '../content/site';
 
 // "Last tended" in place of a copyright line. Defaults to the build date.
 const tended =
-  site.lastTended ??
-  new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  site.lastTended ?? new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 
 <footer class="footer">
   <p>Last tended {tended}</p>
+  <p class="made">
+    {footer.madeBy}
+    <svg class="heart" aria-hidden="true" viewBox="0 0 24 22" width="18" height="17">
+      <path
+        d="M12 20.5C8.6 17.9 2.4 13.6 2.1 8.2 1.9 4.6 4.4 2.2 7.2 2.3c2 .1 3.7 1.4 4.6 3.3.9-2 2.7-3.4 4.8-3.4 2.9 0 5.2 2.5 5 5.9-.4 5.5-6.4 9.7-9.6 12.4Z"
+      ></path>
+    </svg>
+  </p>
   <p>{footer.about}</p>
 </footer>
 
@@ -17,10 +24,25 @@ const tended =
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
     gap: 0.5rem 1.5rem;
     padding-top: 1rem;
     border-top: 1px solid var(--rule);
     font-size: 0.85rem;
     color: var(--ink-soft);
+  }
+  .made {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  /* A slightly lopsided, hand-drawn heart in the accent colour. */
+  .heart {
+    flex: none;
+    fill: color-mix(in srgb, var(--accent) 25%, transparent);
+    stroke: var(--accent);
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+    transform: rotate(-8deg);
   }
 </style>
