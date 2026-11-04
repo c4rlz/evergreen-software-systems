@@ -1,0 +1,126 @@
+---
+// One pressed herbarium sheet per offering. Add an offering in site.ts and a new sheet appears.
+import { specimens } from '../content/site';
+import Section from './Section.astro';
+import Slot from './Slot.astro';
+---
+
+<Section id="specimens" numeral="ii." title="Specimens">
+  <div class="sheets">
+    {
+      specimens.map((s) => (
+        <article class="sheet" id={s.id} aria-labelledby={`${s.id}-name`}>
+          <span class="tape" aria-hidden="true" />
+          <Slot image={s.drawing} class="drawing" />
+          <div class="body">
+            <p class="plate">{s.plate}</p>
+            <h3 id={`${s.id}-name`}>{s.name}</h3>
+            <p class="ph">{s.line}</p>
+            <dl class="label-card">
+              <dt>Habitat</dt>
+              <dd>{s.habitat}</dd>
+              <dt>Growth habit</dt>
+              <dd>{s.growth}</dd>
+              {s.seenAt && (
+                <>
+                  <dt>Seen at</dt>
+                  <dd><a href={s.seenAt.href}>{s.seenAt.label}</a></dd>
+                </>
+              )}
+              {s.seeAlso && (
+                <>
+                  <dt>See also</dt>
+                  <dd><a href={s.seeAlso.href}>{s.seeAlso.label}</a></dd>
+                </>
+              )}
+            </dl>
+            <p class="hand hand--accent confused">
+              not to be confused with: {s.confused.struck && <><s>{s.confused.struck}</s>{' '}</>}{s.confused.text}
+            </p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .sheets {
+    display: grid;
+    gap: 2rem;
+  }
+  .sheet {
+    position: relative;
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1.4rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow);
+    scroll-margin-top: 1.5rem;
+  }
+  .sheet:nth-child(odd) {
+    transform: rotate(-0.5deg);
+    margin-right: 6%;
+  }
+  .sheet:nth-child(even) {
+    transform: rotate(0.6deg);
+    margin-left: 6%;
+  }
+  .sheet :global(.drawing) {
+    height: 9.5rem;
+  }
+  .body {
+    min-width: 0;
+  }
+  .plate {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--accent);
+  }
+  h3 {
+    margin: 0.1rem 0 0.4rem;
+    font-size: 1.55rem;
+  }
+  .label-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.25rem 0.8rem;
+    max-width: 24rem;
+    margin: 0.85rem 0 0;
+    padding: 0.55rem 0.7rem;
+    background: var(--sheet);
+    border: 1px solid var(--ink-soft);
+    font-size: 0.85rem;
+  }
+  dt {
+    padding-top: 0.15rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  dd {
+    margin: 0;
+  }
+  .confused {
+    margin-top: 0.75rem;
+    font-size: 1.2rem;
+  }
+  s {
+    text-decoration-thickness: 2px;
+  }
+  @media (max-width: 600px) {
+    .sheet,
+    .sheet:nth-child(odd),
+    .sheet:nth-child(even) {
+      grid-template-columns: minmax(0, 1fr);
+      margin-inline: 0;
+      transform: none;
+    }
+    .sheet :global(.drawing) {
+      height: 6.5rem;
+    }
+  }
+</style>
