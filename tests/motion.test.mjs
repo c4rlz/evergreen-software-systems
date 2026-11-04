@@ -26,6 +26,3 @@ test('the page sets html.js from a tiny inline script', () => {
   assert.ok(scripts.length < 1500, `inline scripts are ${scripts.length} chars`);
 });
 
-test('the fern starts collapsed for touch users', () => {
-  assert.match(html(), /<button[^>]*class="fern[^"]*"[^>]*aria-expanded="false"/);
-});

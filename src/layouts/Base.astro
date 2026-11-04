@@ -37,10 +37,16 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
       <slot />
     </div>
     <script is:inline>
-      // Tap the fern to show its note on touch screens.
-      document.querySelectorAll('.fern').forEach((b) =>
-        b.addEventListener('click', () => b.setAttribute('aria-expanded', String(b.getAttribute('aria-expanded') !== 'true'))),
-      );
+      // Tap the fern to show its note on touch screens; Escape hides it.
+      document.querySelectorAll('.fern').forEach((b) => {
+        const wrap = b.parentElement;
+        const set = (open) => { b.setAttribute('aria-expanded', String(open)); wrap.classList.toggle('is-dismissed', !open); };
+        b.setAttribute('aria-expanded', 'false');
+        b.addEventListener('click', () => set(b.getAttribute('aria-expanded') !== 'true'));
+        b.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+        b.addEventListener('blur', () => { b.setAttribute('aria-expanded', 'false'); wrap.classList.remove('is-dismissed'); });
+        wrap.addEventListener('mouseleave', () => wrap.classList.remove('is-dismissed'));
+      });
       // Fade notes and sheets in once as they scroll into view.
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {

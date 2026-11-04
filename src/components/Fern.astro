@@ -13,7 +13,6 @@ const { latin, note } = specimen.fern;
     type="button"
     aria-label={`Sword fern, ${latin}`}
     aria-describedby="fern-note"
-    aria-expanded="false"
   >
     <span class="fern-drawing" aria-hidden="true" set:html={fernSvg} />
   </button>
@@ -82,10 +81,16 @@ const { latin, note } = specimen.fern;
       opacity 0.2s ease,
       visibility 0.2s;
   }
-  .fern:hover + .latin + .fern-note,
+  /* Hovering the note itself keeps it open. */
+  .fern-wrap:hover .fern-note,
   .fern:focus-visible + .latin + .fern-note,
   .fern[aria-expanded='true'] + .latin + .fern-note {
     opacity: 1;
     visibility: visible;
+  }
+  /* Escape dismisses it until the pointer or focus moves away. */
+  .fern-wrap.is-dismissed .fern-note {
+    opacity: 0;
+    visibility: hidden;
   }
 </style>

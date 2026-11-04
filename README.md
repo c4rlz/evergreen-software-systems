@@ -22,7 +22,7 @@ npm test          # build, then check the built page
 | --- | --- |
 | `src/content/site.ts` | All copy and links. Edit words here. |
 | `src/components/` | One component per page section, plus the fern and image slots |
-| `public/drawings/`, `public/photos/` | Drawings and photos. Replace a file to swap in your own scan |
+| `public/drawings/`, `public/photos/` | Drawings and photos. Save your scan at the path named in `site.ts` (e.g. `public/drawings/plate-1.svg`) and it replaces the placeholder |
 | `tests/` | Checks run against the built page in `dist/` |
 | `src/styles/global.css` | Palette, type and spacing tokens, shared styles |
 | `src/layouts/Base.astro` | `<head>`, fonts, meta tags |
