@@ -1,5 +1,5 @@
 ---
-// The heart of the site. Carly writes this section herself.
+// The heart of the site: how Carly works with AI, in her words.
 import { handmade } from '../content/site';
 import Section from './Section.astro';
 import Slot from './Slot.astro';
@@ -7,7 +7,9 @@ import Slot from './Slot.astro';
 
 <Section id="handmade" numeral="iv." title="Made by hand, with help">
   <div class="handmade">
-    <p class="ph body">{handmade.body}</p>
+    <div class="body">
+      {handmade.body.map((para) => <p>{para}</p>)}
+    </div>
     <Slot image={handmade.image} class="image" />
   </div>
 </Section>
@@ -20,6 +22,8 @@ import Slot from './Slot.astro';
     align-items: start;
   }
   .body {
+    display: grid;
+    gap: 1rem;
     font-size: 1.15rem;
     line-height: 1.75;
   }

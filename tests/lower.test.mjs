@@ -13,8 +13,14 @@ test('the Plate I "Seen at" link lands on the ticket2pr note', () => {
   assert.match(html(), /id="note-ticket2pr"/);
 });
 
-test('Made by hand is left for Carly to write', () => {
-  assert.match(text(section('handmade')), /\[Carly writes this whole section/);
+test('Made by hand says AI shortens the path from idea to reality', () => {
+  const t = text(section('handmade'));
+  assert.match(t, /only limited by our imagination/);
+  assert.doesNotMatch(t, /\[Carly writes/);
+});
+
+test('Made by hand is written as separate paragraphs', () => {
+  assert.ok([...section('handmade').matchAll(/<p[\s>]/g)].length >= 2);
 });
 
 test('contact links to the personal site', () => {

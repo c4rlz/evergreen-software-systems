@@ -173,7 +173,11 @@ export const fieldNotes: {
 ];
 
 export const handmade = {
-  body: '[Carly writes this whole section: how you use AI, and where you deliberately don’t.]',
+  // One string per paragraph.
+  body: [
+    'AI has shortened the distance between an idea and the thing itself. Something that used to take weeks just to try can now be sketched, built and put in front of people far sooner. Truly, we’re only limited by our imagination.',
+    'So I let AI do a lot of the heavy lifting. The parts that matter most stay with me: listening to what you actually need, deciding what’s worth making, and caring whether it’s good before it ships.',
+  ],
   image: {
     src: '/photos/handmade.jpg',
     alt: '[Carly writes: describe the image]',
