@@ -1,4 +1,4 @@
-# Sword Fern Studio site: design
+# Sword Fern Studios site: design
 
 Date: 2026-11-04
 Branch: `sword-fern-studio`
@@ -6,12 +6,12 @@ Approved mockup: https://claude.ai/artifact/S4Y7gRCkusvZoApzA83QtS (version 3, "
 
 ## Intent
 
-Carly's consulting site, currently branded "Evergreen Software", becomes **Sword Fern Studio**, her software studio in Cumberland, on Vancouver Island. Every trace of Evergreen goes.
+Carly's consulting site, currently branded "Evergreen Software", becomes **Sword Fern Studios**, her software studio in Cumberland, on Vancouver Island. Every trace of Evergreen goes.
 
 The two sites have different jobs:
 
 - **carlyewasiuk.com is the person**: background, career, resume. People go there to check who she is.
-- **Sword Fern Studio is the work**: what the studio offers, how it works, and evidence that it's good. People go there to decide whether to hire it.
+- **Sword Fern Studios is the work**: what the studio offers, how it works, and evidence that it's good. People go there to decide whether to hire it.
 
 So the site is about the offerings, not a bio. The human side shows in how the site is made: Carly's voice, her drawings, the margin notes, and the "Made by hand, with help" section.
 
@@ -44,11 +44,11 @@ Carly's words: the site must not feel **disingenuous or overly aggressive**. In 
 One page, top to bottom. Section names are as below. Roman numerals mark section order only.
 
 ### Nav
-Brand wordmark "Sword Fern Studio" on the left. Links on the right: Key, Specimens, Field notes, Made by hand, Say hello. It wraps on phones. No hamburger menu is needed.
+Brand wordmark "Sword Fern Studios" on the left. Links on the right: Key, Specimens, Field notes, Made by hand, Say hello. It wraps on phones. No hamburger menu is needed.
 
 ### Header: the specimen (from mockup A)
 - Fern illustration on the left (SVG), with *Polystichum munitum* in small italic underneath.
-- Small label "Specimen", then the title "Sword Fern Studio".
+- Small label "Specimen", then the title "Sword Fern Studios".
 - Italic line: "Software, made by hand. Grows in Cumberland, Vancouver Island."
 - Placeholder: `[Carly writes: one line on what the studio is]`
 - A taped "polaroid" photo slot on the right, captioned in handwriting (placeholder "Cumberland, Oct."). On phones it moves below.
@@ -96,7 +96,7 @@ Sheets come from an array in `site.ts`, so adding an offering means adding one e
 ### v. Companion species
 - Placeholder: `[Carly writes: a warm invitation]`
 - Email shown as text and as a `mailto:` link. No form.
-- "Sword Fern Studio is Carly Ewasiuk's practice. More about me, and my resume →" linking to https://carlyewasiuk.com.
+- "Sword Fern Studios is Carly Ewasiuk's practice. More about me, and my resume →" linking to https://carlyewasiuk.com.
 - A dashed placeholder box marking where "Other things growing here" will go later. It's hidden from the built site by default (see "Builder's calls").
 
 ### Footer
@@ -120,7 +120,7 @@ Match the approved mockup. Its CSS is a fine starting point for tokens.
 - **Little JavaScript:** the page works fully with JS off. Allowed JS: the tap-to-reveal on the fern for touch devices, and an optional IntersectionObserver for the scroll fade-ins.
 - **Illustrations:** SVG preferred. The fern ships as a static SVG file, not one generated at runtime. Every drawing or photo slot is a named file in `public/` (for example `public/drawings/plate-1.svg`, `public/photos/header.jpg`) with alt text in `site.ts`, so Carly swaps a scan by replacing one file. Until she supplies one, the slot shows a dashed placeholder box with a handwritten label.
 - **Accessibility:** semantic HTML (landmarks, one `h1`, ordered headings), keep the existing skip link, WCAG AA contrast in both themes over the textures, visible focus states, everything usable by keyboard, alt text on every image, and decorative tape and doodles hidden from screen readers.
-- **Meta:** title "Sword Fern Studio — software, made by hand on Vancouver Island" (a placeholder Carly may change), a description, an OG image of the fern specimen (1200×630 PNG in `public/`), favicon from the fern, and `theme-color` updated.
+- **Meta:** title "Sword Fern Studios — software, made by hand on Vancouver Island" (a placeholder Carly may change), a description, an OG image of the fern specimen (1200×630 PNG in `public/`), favicon from the fern, and `theme-color` updated.
 - **Hosting:** static output to Cloudflare Pages. Carly connects the repo in the Cloudflare dashboard herself.
 - **Light:** no images over what's needed, no tracking scripts.
 
@@ -129,7 +129,7 @@ Match the approved mockup. Its CSS is a fine starting point for tokens.
 - Components: `Hero`, `Services`, `Proof`, `About`, `Treeline` and the Evergreen palette in `global.css`. Reuse `Section.astro`, `Base.astro` and `Footer.astro` where they fit.
 - The Fraunces and Inter font packages, replaced by IM Fell English, Literata and Caveat.
 - Package name `evergreen-software-systems` → `sword-fern-studio` (both `package.json` and `package-lock.json`).
-- README rewritten for Sword Fern Studio, updating the "Where things live" table and Deploy section (Cloudflare Pages).
+- README rewritten for Sword Fern Studios, updating the "Where things live" table and Deploy section (Cloudflare Pages).
 - `site.shortName: 'Evergreen'` and every other Evergreen string. After the build, `git grep -i evergreen` should return nothing outside `docs/`.
 
 ## Builder's calls (decided during design, not by Carly; flag if you disagree)

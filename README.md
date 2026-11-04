@@ -1,6 +1,6 @@
-# Sword Fern Studio
+# Sword Fern Studios
 
-The website for Sword Fern Studio, a small software studio in Cumberland, Vancouver Island. It's one page laid out like a field guide, with each offering as a specimen.
+The website for Sword Fern Studios, a small software studio in Cumberland, Vancouver Island. It's one page laid out like a field guide, with each offering as a specimen.
 
 Built with [Astro](https://astro.build) and plain CSS. The page works with JavaScript off; a few lines add the fern's tap-to-reveal and gentle fade-ins.
 

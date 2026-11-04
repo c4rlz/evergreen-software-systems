@@ -7,7 +7,7 @@ test('no Evergreen branding in the built page', () => {
 });
 
 test('page title', () => {
-  assert.match(html(), /<title>Sword Fern Studio — software, made by hand on Vancouver Island<\/title>/);
+  assert.match(html(), /<title>Sword Fern Studios — software, made by hand on Vancouver Island<\/title>/);
 });
 
 test('meta description, OG image and theme colour', () => {
@@ -23,4 +23,8 @@ test('dark mode is defined', () => {
 
 test('exactly one h1', () => {
   assert.equal(html().match(/<h1[\s>]/g)?.length, 1);
+});
+
+test('the studio is always "Sword Fern Studios", plural', () => {
+  assert.doesNotMatch(html().replace(/<[^>]+>/g, ' '), /Sword Fern Studio(?!s)/);
 });

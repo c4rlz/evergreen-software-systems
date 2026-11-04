@@ -14,10 +14,10 @@ export const site: {
   // e.g. '4 Nov 2026'. Leave unset to use the build date.
   lastTended?: string;
 } = {
-  name: 'Sword Fern Studio',
-  title: 'Sword Fern Studio — software, made by hand on Vancouver Island',
+  name: 'Sword Fern Studios',
+  title: 'Sword Fern Studios — software, made by hand on Vancouver Island',
   description:
-    'Sword Fern Studio is a small software studio in Cumberland, Vancouver Island: product development, systems, and thoughtful AI consulting.',
+    'Sword Fern Studios is a small software studio in Cumberland, Vancouver Island: product development, systems, and thoughtful AI consulting.',
   place: 'Cumberland, Vancouver Island',
 };
 

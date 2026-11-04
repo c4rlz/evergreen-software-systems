@@ -8,7 +8,7 @@ const text = (s) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 test('the h1 is the studio name', () => {
   const h1 = html().match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
   assert.ok(h1, 'no h1');
-  assert.equal(text(h1[1]), 'Sword Fern Studio');
+  assert.equal(text(h1[1]), 'Sword Fern Studios');
 });
 
 test('the fern is a keyboard-reachable button named with its Latin name', () => {
