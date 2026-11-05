@@ -94,7 +94,7 @@ export const specimens: {
     habitat: 'Small teams and mission-driven orgs with a clear idea and nobody free to build it.',
     growth: 'We agree on the outcome, I write a plan you can poke holes in, then I build it end to end, with the tests and docs your team needs to own it after I leave.',
     seenAt: { label: 'ticket2pr', href: '#note-ticket2pr' },
-    confused: { text: 'an agency that ships and disappears' },
+    confused: { text: 'code with a goodbye note' },
     drawing: {
       src: '/drawings/plate-1.svg',
       alt: '[Carly writes: describe the drawing]',
